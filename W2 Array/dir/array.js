@@ -33,10 +33,10 @@ class MyArray {
         this.push(_item); //เพิ่มค่า _item ใน array
         for (let index = this.length - 1; index > _index; index--) { //ใช้วนลูปเพื่อเอาค่า index ที่ต้องการเพิ่มมาแทนที่ค่า index ก่อนหน้า
             const item = this.data[index]; //สรา้งตัวแปร item เพื่อเก็บค่า index ที่ต้องการเพิ่ม
-            this.data[index] = this.data[index - 1];
-            this.data[index - 1] = item;
+            this.data[index] = this.data[index - 1]; // data ที่ index นั้นจะเท่ากับ data ที่ index - 1  
+            this.data[index - 1] = item; //  index - 1 นั้นจะเท่ากับ item
         }
-        return this.length;
+        return this.length; //return ค่า length ให้
     }
 }
 const arr = new MyArray();
