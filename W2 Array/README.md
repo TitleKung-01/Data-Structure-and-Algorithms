@@ -1,4 +1,4 @@
-# MyArray Class
+# Array Data Structure and Algorithm
 
 MyArray เป็นคลาสที่จำลองการทำงานของ Array ใน JavaScript โดยใช้ TypeScript ซึ่งมีฟังก์ชันพื้นฐานสำหรับการจัดการข้อมูลภายใน Array
 
@@ -39,26 +39,6 @@ const poppedItem = arr.pop();
 console.log(poppedItem); // '40'
 console.log(arr); // { 0: '20', 1: '25' }, length: 2
 ```
-
-## API
-
-### `push(_data: any): number`
-เพิ่มข้อมูลใหม่ต่อท้าย Array และคืนค่า length ใหม่
-
-### `pop(): any`
-ลบข้อมูลตัวสุดท้ายออกจาก Array และคืนค่าที่ถูกลบ
-
-### `delete(_index: number): any`
-ลบข้อมูลที่ตำแหน่งที่กำหนดและคืนค่าที่ถูกลบ
-
-### `shift(_index: number): void`
-เลื่อนข้อมูลไปทางซ้ายเพื่อแทนที่ตำแหน่งที่ลบ
-
-### `insert(_index: number, _item: any): number`
-แทรกข้อมูลใหม่ที่ตำแหน่งที่กำหนดและคืนค่า length ใหม่
-
-### `get(_index: number): any`
-ดึงข้อมูลจากตำแหน่งที่กำหนดและคืนค่าที่ได้
 
 <div align="center">
   <img src="./Array.png" alt="Array" width="500" height="500">
