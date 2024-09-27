@@ -59,3 +59,5 @@ console.log(arr); // { 0: '20', 1: '25' }, length: 2
 
 ### `get(_index: number): any`
 ดึงข้อมูลจากตำแหน่งที่กำหนดและคืนค่าที่ได้
+
+<img src="./Array.png" alt="Array" width="500" height="500">
