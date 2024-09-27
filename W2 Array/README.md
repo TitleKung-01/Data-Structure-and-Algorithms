@@ -39,7 +39,7 @@ const poppedItem = arr.pop();
 console.log(poppedItem); // '40'
 console.log(arr); // { 0: '20', 1: '25' }, length: 2
 ```
-
+## Array Data Structure
 <div align="center">
   <img src="./Array.png" alt="Array" width="500" height="500">
 </div>
