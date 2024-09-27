@@ -1,6 +1,5 @@
 # Array Data Structure and Algorithm การจัดเก็บข้อมูลแบบอาร์เรย์
-<div align="center">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000">
   <style>
     text { font-family: Arial, sans-serif; font-size: 14px; }
     .title { font-size: 18px; font-weight: bold; }
@@ -97,4 +96,3 @@
     </marker>
   </defs>
 </svg>
-</div>
