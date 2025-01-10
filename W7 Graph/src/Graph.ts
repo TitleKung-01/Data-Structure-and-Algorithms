@@ -1,42 +1,80 @@
 class Vertex {
-    [ID: string]: string[] //Index Signatures
+    [ID: string]: string[]
 }
 
 class Graph {
-    adjacentList: Vertex = {} // สร้าง object ที่เป็น key-value pair โดย key เป็น string และ value เป็น array ของ string
-    numberOfNodes: number = 0 // จำนวน node ทั้งหมดใน graph
- 
-    addVertex(node: string) { // เพิ่ม node ใหม่เข้าไปใน graph
-        this.numberOfNodes++ // เพิ่มจำนวน node ทั้งหมดใน graph
-        this.adjacentList[node] = [] // สร้าง key ใหม่ใน object โดย key คือ node ที่เพิ่มเข้ามา และ value เป็น array ว่าง
+    adjacentList: Vertex = {}
+    numberOfNodes: number = 0
+    matrix: number[][] = [] // เพิ่ม property matrix
+
+    addVertex(node: string) {
+        this.numberOfNodes++
+        this.adjacentList[node] = []
+        
+        // เพิ่ม row และ column ใหม่ใน matrix
+        this.matrix.push(new Array(this.numberOfNodes).fill(0))
+        for (let i = 0; i < this.numberOfNodes - 1; i++) {
+            this.matrix[i].push(0)
+        }
     }
 
-    //undirected graph
-    addEdge(node1: string, node2: string) { // เพิ่ม edge ระหว่าง node 2 ตัว
-        this.adjacentList[node1].push(node2) // เพิ่ม node2 เข้าไปใน array ของ node1
-        this.adjacentList[node2].push(node1) // เพิ่ม node1 เข้าไปใน array ของ node2
+    addEdge(node1: string, node2: string) {
+        this.adjacentList[node1].push(node2)
+        this.adjacentList[node2].push(node1)
+        
+        // อัพเดท matrix
+        const index1 = Object.keys(this.adjacentList).indexOf(node1)
+        const index2 = Object.keys(this.adjacentList).indexOf(node2)
+        this.matrix[index1][index2] = 1
+        this.matrix[index2][index1] = 1
     }
 
-    showConnections() { // แสดง node และ edge ทั้งหมดใน graph
-        const allNodes = Object.keys(this.adjacentList) // ดึง key ทั้งหมดของ object มาเก็บไว้ในตัวแปร allNodes
-        for (const node of allNodes) { // วนลูปเพื่อแสดง node และ edge ทั้งหมดใน graph
-            const edges = this.adjacentList[node as keyof object] // ดึง value ของ key นั้น ๆ มาเก็บไว้ในตัวแปร edges
-            let connections = '' // สร้างตัวแปร connections เพื่อเก็บ edge ทั้งหมดของ node นั้น ๆ
-            for (const edge of edges) { // วนลูปเพื่อเก็บ edge ทั้งหมดของ node นั้น ๆ
-                connections += edge + ' ' // เก็บ edge ลงในตัวแปร connections
+    showConnections() {
+        const allNodes = Object.keys(this.adjacentList)
+        for (const node of allNodes) {
+            const edges = this.adjacentList[node]
+            let connections = ''
+            for (const edge of edges) {
+                connections += edge + ' '
             }
-            console.log(node + ' --> ' + connections) // แสดง node และ edge ทั้งหมดของ node นั้น ๆ
+            console.log(node + ' --> ' + connections)
+        }
+    }
+
+    // เพิ่มฟังก์ชันแสดง matrix
+    showMatrix() {
+        const nodes = Object.keys(this.adjacentList)
+        
+        // แสดงหัวคอลัมน์
+        console.log('  | ' + nodes.join(' '))
+        console.log('--+-' + '-'.repeat(nodes.length * 2))
+        
+        // แสดงแต่ละแถวของ matrix
+        for(let i = 0; i < nodes.length; i++) {
+            console.log(`${nodes[i]} | ${this.matrix[i].join(' ')}`)
         }
     }
 }
 
-const g = new Graph() // สร้าง object จาก class Graph
-g.addVertex('0') 
-g.addVertex('1') 
+// ตัวอย่างการใช้งาน
+const g = new Graph()
+
+// เพิ่ม vertices
+g.addVertex('1')
 g.addVertex('2')
 g.addVertex('3')
-g.addEdge('0', '2')
-g.addEdge('2', '1')
-g.addEdge('2', '3')
-g.addEdge('3', '1')
+g.addVertex('4')
+g.addVertex('5')
+
+// เพิ่ม edges
+g.addEdge('5', '1')
+g.addEdge('5', '2')
+g.addEdge('5', '3')
+g.addEdge('5', '4')
+
+// แสดงผล
+console.log("Connections:")
 g.showConnections()
+
+console.log("\nAdjacency Matrix:")
+g.showMatrix()
